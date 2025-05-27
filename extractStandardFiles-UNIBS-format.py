@@ -11,7 +11,7 @@ def process_file(file_path, output_dir=None):
         output_dir = file_path + r"\Project Standard Extractions"
         
     os.makedirs(output_dir, exist_ok=True)
-    print(output_dir)
+    print("Extracted files will be stored in : " + output_dir)
     path = file_path
     
     folder = path.split("\\")[-1]
