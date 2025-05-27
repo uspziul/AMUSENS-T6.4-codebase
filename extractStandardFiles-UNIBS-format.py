@@ -34,7 +34,7 @@ def process_file(file_path, output_dir=None):
     file = [f for f in files if ".XLS" in f or ".xls" in f]
 
     # Read Excel data
-    data = pd.read_excel(path + "\\" + file[0])
+    data = pd.read_excel(path + "\\" + file[0],sheet_name='esportamisura')
     
     # Extract gas concentration columns (columns 32-38)
     gasesColumns = data.iloc[:,32:38]
@@ -45,7 +45,6 @@ def process_file(file_path, output_dir=None):
 
     # Extract material sensor data columns (columns 2-32)
     materialColumns = data.iloc[:,2:32]
-    saveGases = np.array([])
 
     # Process each gas type
     for gas in gasNames: 
@@ -56,8 +55,6 @@ def process_file(file_path, output_dir=None):
         
         # Find end points: where gas concentration decreases by >10% of max value
         end = np.where(np.diff(nonZeroGases[gas]) < -.1*np.max(nonZeroGases[gas]))[0]
-        
-        each = []
         
         # Process each injection cycle
         for s in start: 
@@ -117,7 +114,7 @@ def process_file(file_path, output_dir=None):
                 filepath = output_dir + rf"\{filename}"
                 
                 # Save to CSV with semicolon separator
-                out.to_csv(filepath,sep = ";",index=False)
+                out.to_csv(filepath,index=False)
     
 
 # Main execution block - handles command line arguments
