@@ -5,17 +5,6 @@ import numpy as np
 from datetime import datetime
 import matplotlib.pyplot as plt
 
-#%%
-class Measurement:
-    gas: str
-    material: str
-    data: pd.DataFrame
-    RH: int
-    date: datetime
-    heaterTemp: int
-    concentration: int
-    totalFlow: int
-
 #%% #Naming convention must follow "material-date-temperature"
 path = r"C:\Users\luiz.miranda\Dropbox\IMT\Postdoc - TSP - 2025\Data\UNIBS\Raw_Data\WO3-20241106-200°C"
 folder = path.split("\\")[-1]
